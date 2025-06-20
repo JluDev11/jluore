@@ -4,7 +4,7 @@ const FullscreenSection = ({
   images = [],
   children,
   overlay = "bg-black/60",
-  align = "right", // default alignment
+  align = "right",
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -12,12 +12,11 @@ const FullscreenSection = ({
     if (images.length > 1) {
       const interval = setInterval(() => {
         setCurrentIndex((prev) => (prev + 1) % images.length);
-      }, 5000); // Change every 5 seconds
+      }, 5000);
       return () => clearInterval(interval);
     }
   }, [images]);
 
-  // Determine justification based on align prop
   const justifyMap = {
     left: "justify-start",
     center: "justify-center",
@@ -25,18 +24,13 @@ const FullscreenSection = ({
   };
   const justifyClass = justifyMap[align] || "justify-end";
 
-  // Prefix image paths with Vite's base URL
-  const resolvedImages = images.map((img) =>
-    img.startsWith("http") ? img : `${import.meta.env.BASE_URL}${img.replace(/^\/+/, "")}`
-  );
-
   return (
     <section className="relative h-140 w-full overflow-hidden">
       {/* Background Image */}
-      {resolvedImages.length > 0 && (
+      {images.length > 0 && (
         <img
-          src={resolvedImages[currentIndex]}
-          alt="Background"
+          src={images[currentIndex]}
+          alt={`Slide ${currentIndex}`}
           className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
         />
       )}

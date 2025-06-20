@@ -6,7 +6,7 @@ import Products from './pages/Products';
 
 export default function AppRouter() {
   return (
-    <Router>
+    <Router basename="/jluore"> {/* 👈 this line is the fix */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

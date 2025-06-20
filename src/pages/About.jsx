@@ -4,11 +4,11 @@ import Footer from "../components/Footer";
 import Contact from "../components/Contact";
 import FullscreenSection from "../components/FullscreenSection";
 
-const images = [
-  "src/assets/pic4.jpg",
-  "src/assets/pic5.jpg",
-  "src/assets/product.jpg",
-];
+import pic4 from "../assets/pic4.jpg";
+import pic5 from "../assets/pic5.jpg";
+import product from "../assets/product.jpg";
+
+const images = [pic4, pic5, product];
 
 export default function About() {
   return (

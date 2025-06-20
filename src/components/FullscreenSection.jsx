@@ -25,12 +25,17 @@ const FullscreenSection = ({
   };
   const justifyClass = justifyMap[align] || "justify-end";
 
+  // Prefix image paths with Vite's base URL
+  const resolvedImages = images.map((img) =>
+    img.startsWith("http") ? img : `${import.meta.env.BASE_URL}${img.replace(/^\/+/, "")}`
+  );
+
   return (
     <section className="relative h-140 w-full overflow-hidden">
       {/* Background Image */}
-      {images.length > 0 && (
+      {resolvedImages.length > 0 && (
         <img
-          src={images[currentIndex]}
+          src={resolvedImages[currentIndex]}
           alt="Background"
           className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
         />
